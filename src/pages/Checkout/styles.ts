@@ -103,7 +103,7 @@ export const ContainerFormPayment = styled.div`
 
 export const ContainerMainSelectedCoffees = styled.div`
   width: 28rem;
-  height: 31.125rem;
+  max-height: 31.125rem;
   margin-top: 1.25rem;
   display: flex;
   align-items: flex-start;

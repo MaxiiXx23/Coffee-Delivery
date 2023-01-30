@@ -17,10 +17,14 @@ export const AdderCount = styled.div`
   background-color: ${({ theme }) => theme.colors['gray-300']};
 `
 
-export const WrapperIcon = styled.div`
-  svg {
-    cursor: pointer;
-  }
+export const WrapperIcon = styled.button`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+
   color: ${({ theme }) => theme.colors['purple-500']};
   transition: 0.3s;
   &:hover {

@@ -1,5 +1,7 @@
-import { Trash } from 'phosphor-react'
+import { useContext } from 'react'
+
 import { useTheme } from 'styled-components'
+import { Trash } from 'phosphor-react'
 
 import {
   ContainerMain,
@@ -13,31 +15,46 @@ import {
   BtnRemove,
 } from './styles'
 
-import ImgCoffee from '../../../../assets/coffees/TypeExpresso.svg'
 import { AdderCoffee } from '../../../../components/AdderCoffee'
+import { CoffeeContext } from '../../../../contexts/CoffeeContextProvider'
+import { convertPriceToString } from '../../../../utils/convertPriceToString'
 
-/*
-interface ICoffeeSelected {
+interface ICoffeeSelectedProps {
+  id: string
   imgUrl: string
   name: string
   price: number
+  amountSelected: number
 }
-*/
 
-export function CoffeeSelected() {
+export function CoffeeSelected({
+  id,
+  imgUrl,
+  name,
+  price,
+  amountSelected,
+}: ICoffeeSelectedProps) {
   const theme = useTheme()
+
+  const { removeCoffeeOnCart } = useContext(CoffeeContext)
+
+  const priceFormatted = convertPriceToString(price)
+
+  function handleRemoveCoffee() {
+    removeCoffeeOnCart(id)
+  }
 
   return (
     <ContainerMain>
       <ContainerInfo>
         <WrapperImage>
-          <img src={ImgCoffee} alt="" title="Image-Coffee" />
+          <img src={imgUrl} alt="" title="Image-Coffee" />
         </WrapperImage>
         <WrapperNameAdder>
-          <Name>Latte</Name>
+          <Name>{name}</Name>
           <WrapperOptions>
-            <AdderCoffee />
-            <BtnRemove>
+            <AdderCoffee idCoffee={id} />
+            <BtnRemove type="button" onClick={handleRemoveCoffee}>
               <Trash size={16} color={theme.colors['purple-500']} />
               <span>REMOVER</span>
             </BtnRemove>
@@ -46,7 +63,8 @@ export function CoffeeSelected() {
       </ContainerInfo>
       <WrapperPrice>
         <Price>
-          <span>R$</span> 9,90
+          {/* criar util para converter o price para string */}
+          <span>R$</span> {priceFormatted}
         </Price>
       </WrapperPrice>
     </ContainerMain>

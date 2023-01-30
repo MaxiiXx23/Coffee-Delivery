@@ -1,19 +1,84 @@
+import { useEffect } from 'react'
+
+import { useFormContext } from 'react-hook-form'
+
 import { ContainerMainInput, Input, WrapperInputs } from './styles'
 
-// user o FormProvider (react-hook-form)
+interface IResponseFetchCEP {
+  bairro: string
+  localidade: string // city
+  logradouro: string // street
+  uf: string
+}
 
 export function ContainerInputsForm() {
+  const { register, watch, setValue } = useFormContext()
+
+  const cep: string = watch('cep')
+
+  useEffect(() => {
+    async function FecthCEP(cep: string) {
+      const result: IResponseFetchCEP = await fetch(
+        `https://viacep.com.br/ws/${cep}/json/`,
+      )
+        .then((response) => {
+          const resultJson = response
+          return resultJson.json()
+        })
+        .catch(() => console.log('Error fecth'))
+
+      const { logradouro, bairro, localidade, uf } = result
+
+      setValue('street', logradouro)
+      setValue('district', bairro)
+      setValue('city', localidade)
+      setValue('state', uf)
+    }
+    if (cep && cep.length === 8) {
+      FecthCEP(cep)
+    }
+  }, [cep, setValue])
+
   return (
     <ContainerMainInput>
-      <Input placeholder="CEP" />
-      <Input placeholder="RUA" gridColumn="1 / 4" />
+      <Input
+        type="text"
+        {...register('cep')}
+        min={8}
+        max={8}
+        placeholder="CEP"
+        autoComplete="none"
+      />
+      <Input
+        type="text"
+        {...register('street')}
+        placeholder="RUA"
+        disabled
+        gridColumn="1 / 4"
+      />
       <WrapperInputs>
-        <Input placeholder="NÚMERO" />
-        <Input placeholder="COMPLEMENTO" />
+        <Input
+          type="text"
+          {...register('number')}
+          placeholder="NÚMERO"
+          autoComplete="none"
+        />
+        <Input
+          type="text"
+          {...register('complement')}
+          max={50}
+          placeholder="COMPLEMENTO"
+          autoComplete="none"
+        />
       </WrapperInputs>
-      <Input placeholder="BAIRRO" />
-      <Input placeholder="CIDADE" />
-      <Input placeholder="UF" />
+      <Input
+        type="text"
+        {...register('district')}
+        placeholder="BAIRRO"
+        disabled
+      />
+      <Input type="text" {...register('city')} placeholder="CIDADE" disabled />
+      <Input type="text" {...register('state')} placeholder="UF" disabled />
     </ContainerMainInput>
   )
 }

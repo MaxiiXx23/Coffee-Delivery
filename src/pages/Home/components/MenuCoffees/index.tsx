@@ -14,6 +14,7 @@ export function MenuCoffees() {
           return (
             <CardCoffee
               key={coffee.id}
+              id={coffee.id}
               imgUrl={coffee.imgUrl}
               expecifications={coffee.expecification}
               name={coffee.name}

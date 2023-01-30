@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { useTheme } from 'styled-components'
+
 import { ShoppingCartSimple } from 'phosphor-react'
 
 import { AdderCoffee } from '../AdderCoffee'
@@ -17,7 +19,11 @@ import {
   BtnCartSimple,
 } from './styles'
 
+import { CoffeeContext } from '../../contexts/CoffeeContextProvider'
+import { convertPriceToString } from '../../utils/convertPriceToString'
+
 interface ICardCoffeeProps {
+  id: string
   imgUrl: string
   expecifications: string[]
   name: string
@@ -26,6 +32,7 @@ interface ICardCoffeeProps {
 }
 
 export function CardCoffee({
+  id,
   imgUrl,
   expecifications,
   name,
@@ -33,9 +40,20 @@ export function CardCoffee({
   price,
 }: ICardCoffeeProps) {
   const theme = useTheme()
+  const { addNewCoffeeOnCart } = useContext(CoffeeContext)
 
-  const priceString = String(price).padEnd(4, '0')
-  const priceFormatted = priceString.replace('.', ',')
+  const priceFormatted = convertPriceToString(price)
+
+  function handleAddNewCoffeeOnCart() {
+    const newCoffe = {
+      id,
+      imgUrl,
+      name,
+      price,
+      amountSelected: 2,
+    }
+    addNewCoffeeOnCart(newCoffe)
+  }
 
   return (
     <ContainerCardCoffee>
@@ -63,9 +81,9 @@ export function CardCoffee({
         </Price>
         <WrapperAdderAndNav>
           {/* Container Adder */}
-          <AdderCoffee />
+          <AdderCoffee idCoffee="" />
           {/* ButtonCartSimple */}
-          <BtnCartSimple>
+          <BtnCartSimple onClick={handleAddNewCoffeeOnCart}>
             <ShoppingCartSimple
               size={22}
               color={theme.colors['white-100']}

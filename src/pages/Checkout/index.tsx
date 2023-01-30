@@ -1,6 +1,12 @@
-import { MapPinLine, CurrencyDollar } from 'phosphor-react'
+import { useContext, useState } from 'react'
+
 import { useTheme } from 'styled-components'
-import { RelativeRoutingType, useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
+import { FormProvider, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+
+import { MapPinLine, CurrencyDollar } from 'phosphor-react'
 
 import {
   ContainerMain,
@@ -20,6 +26,7 @@ import {
   ContainerMainInfo,
 } from './styles'
 
+import { CoffeeContext } from '../../contexts/CoffeeContextProvider'
 import { ContainerInfosPrice } from './components/ContainerInfosPrice'
 import { ContainerInputsForm } from './components/ContainerInputsForm'
 import { CoffeeSelected } from './components/CoffeeSelected'
@@ -27,6 +34,7 @@ import { CoffeeSelected } from './components/CoffeeSelected'
 import { BtnFormPayment } from './components/BtnFormPayment'
 import { Button } from '../../components/Button'
 
+/*
 interface NavigateFunction {
   (
     to: '/success',
@@ -42,17 +50,77 @@ interface NavigateFunction {
 // eslint-disable-next-line no-redeclare
 declare function useNavigate(): NavigateFunction
 
+*/
+
+const schema = yup.object({
+  state: yup.string().max(2, 'Estado não pode conter mais de 2 caracteres.'),
+  city: yup.string().max(50, 'Cidade não pode conter mais de 50 caracteres.'),
+  district: yup
+    .string()
+    .max(50, 'Bairro não pode conter mais de 50 caracteres.'),
+  complement: yup
+    .string()
+    .max(50, 'Complemento não pode conter mais de 50 caracteres.'),
+  number: yup.string().required('Número inválido.'),
+  street: yup
+    .string()
+    .max(50, 'Rua não pode conter mais de 50 caracteres.')
+    .required('Rua inválida.'),
+  cep: yup.string().length(8, 'CEP inválido.').required(),
+})
+
+// type FormData = yup.InferType<typeof schema>
+
+interface IFormData {
+  state: string
+  city: string
+  district: string
+  complement: string
+  number: string
+  street: string
+  cep: string
+  formPayment: string
+}
+
 export function Checkout() {
   const theme = useTheme()
-  const navigate = useNavigate()
+  const { coffeesSelected } = useContext(CoffeeContext)
 
-  function handleNavigateToSuccess() {
-    navigate('/success')
+  const [formPaymentSelected, setFormPaymentSelected] = useState('')
+
+  // const navigate = useNavigate()
+
+  const formCheckout = useForm<IFormData>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      cep: '',
+      street: '',
+      number: '',
+      complement: '',
+      district: '',
+      city: '',
+      formPayment: '',
+    },
+  })
+
+  const { handleSubmit, setValue } = formCheckout
+
+  // function handleNavigateToSuccess() {
+  //   navigate('/success')
+  // }
+
+  function selectFormPayment(formPayment: string) {
+    setFormPaymentSelected(formPayment)
+    setValue('formPayment', formPayment)
+  }
+
+  function handleFormCheckout(data: IFormData) {
+    console.log(data)
   }
 
   return (
     <ContainerMain>
-      <form action="">
+      <form onSubmit={handleSubmit(handleFormCheckout)} action="">
         <ContainerMainAddress>
           <Title>Complete seu pedido</Title>
           <ContainerAddress>
@@ -65,7 +133,9 @@ export function Checkout() {
                 </Description>
               </ContainerDescription>
             </ContainerHeader>
-            <ContainerInputsForm />
+            <FormProvider {...formCheckout}>
+              <ContainerInputsForm />
+            </FormProvider>
           </ContainerAddress>
           <ContainerPaymentMain>
             <ContainerPayment>
@@ -83,16 +153,25 @@ export function Checkout() {
                 <BtnFormPayment
                   text="CARTÃO DE CRÉDITO"
                   icon="CreditCard"
+                  formPaymentSelected={formPaymentSelected}
+                  formPayment="CreditCard"
+                  selectFormPayment={selectFormPayment}
                   isSelected={true}
                 />
                 <BtnFormPayment
                   text="CARTÃO DE DÉBITO"
                   icon="Bank"
+                  formPaymentSelected={formPaymentSelected}
+                  formPayment="Debit"
+                  selectFormPayment={selectFormPayment}
                   isSelected={false}
                 />
                 <BtnFormPayment
                   text="DINHEIRO"
                   icon="Money"
+                  formPaymentSelected={formPaymentSelected}
+                  formPayment="Money"
+                  selectFormPayment={selectFormPayment}
                   isSelected={false}
                 />
               </ContainerFormPayment>
@@ -104,15 +183,22 @@ export function Checkout() {
           <Title>Cafés selecionados</Title>
           <ContainerSelectedCoffees>
             <ListCoffees>
-              <CoffeeSelected />
-              <CoffeeSelected />
+              {coffeesSelected.map((coffeeSelected) => {
+                return (
+                  <CoffeeSelected
+                    key={coffeeSelected.id}
+                    id={coffeeSelected.id}
+                    imgUrl={coffeeSelected.imgUrl}
+                    name={coffeeSelected.name}
+                    price={coffeeSelected.price}
+                    amountSelected={coffeeSelected.amountSelected}
+                  />
+                )
+              })}
             </ListCoffees>
             <ContainerMainInfo>
               <ContainerInfosPrice />
-              <Button
-                onClick={handleNavigateToSuccess}
-                text="CONFIRMAR PEDIDO"
-              />
+              <Button type="submit" text="CONFIRMAR PEDIDO" />
             </ContainerMainInfo>
           </ContainerSelectedCoffees>
         </ContainerMainSelectedCoffees>

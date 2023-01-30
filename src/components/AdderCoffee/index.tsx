@@ -1,8 +1,16 @@
+// import { useContext } from 'react'
+
 import { Minus, Plus } from 'phosphor-react'
 
 import { Adder, AdderCount, WrapperIcon } from './styles'
 
-export function AdderCoffee() {
+// import { CoffeeContext } from '../../contexts/CoffeeContextProvider'
+
+interface IAdderCoffee {
+  idCoffee: string
+}
+
+export function AdderCoffee({ idCoffee }: IAdderCoffee) {
   return (
     <Adder>
       {/* Adder */}

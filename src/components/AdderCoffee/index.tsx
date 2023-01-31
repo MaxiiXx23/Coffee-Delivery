@@ -7,19 +7,25 @@ import { Adder, AdderCount, WrapperIcon } from './styles'
 // import { CoffeeContext } from '../../contexts/CoffeeContextProvider'
 
 interface IAdderCoffee {
-  idCoffee: string
+  countItems: number
+  handleAddItem: () => void
+  handleRemoveItem: () => void
 }
 
-export function AdderCoffee({ idCoffee }: IAdderCoffee) {
+export function AdderCoffee({
+  countItems,
+  handleAddItem,
+  handleRemoveItem,
+}: IAdderCoffee) {
   return (
     <Adder>
       {/* Adder */}
       <AdderCount>
-        <WrapperIcon>
+        <WrapperIcon type="button" onClick={handleRemoveItem}>
           <Minus />
         </WrapperIcon>
-        <span>1</span>
-        <WrapperIcon>
+        <span>{countItems}</span>
+        <WrapperIcon type="button" onClick={handleAddItem}>
           <Plus />
         </WrapperIcon>
       </AdderCount>

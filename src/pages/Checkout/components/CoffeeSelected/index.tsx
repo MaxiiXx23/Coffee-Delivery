@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { useTheme } from 'styled-components'
 import { Trash } from 'phosphor-react'
@@ -35,14 +35,36 @@ export function CoffeeSelected({
   amountSelected,
 }: ICoffeeSelectedProps) {
   const theme = useTheme()
+  const [countItems, setCountItems] = useState(amountSelected)
 
-  const { removeCoffeeOnCart } = useContext(CoffeeContext)
+  const { removeCoffeeOnCart, changeAmountCoffeeSelected } =
+    useContext(CoffeeContext)
 
   const priceFormatted = convertPriceToString(price)
 
   function handleRemoveCoffee() {
     removeCoffeeOnCart(id)
   }
+
+  function handleAddItem() {
+    setCountItems((state) => {
+      return state + 1
+    })
+  }
+
+  function handleRemoveItem() {
+    setCountItems((state) => {
+      if (state > 1) {
+        return state - 1
+      }
+      return state
+    })
+  }
+
+  useEffect(() => {
+    // changeAmountCoffeeSelected(id, countItems)
+    console.log('Chance value')
+  }, [countItems, changeAmountCoffeeSelected, id])
 
   return (
     <ContainerMain>
@@ -53,7 +75,11 @@ export function CoffeeSelected({
         <WrapperNameAdder>
           <Name>{name}</Name>
           <WrapperOptions>
-            <AdderCoffee idCoffee={id} />
+            <AdderCoffee
+              countItems={countItems}
+              handleAddItem={handleAddItem}
+              handleRemoveItem={handleRemoveItem}
+            />
             <BtnRemove type="button" onClick={handleRemoveCoffee}>
               <Trash size={16} color={theme.colors['purple-500']} />
               <span>REMOVER</span>

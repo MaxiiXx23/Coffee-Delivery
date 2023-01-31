@@ -109,6 +109,21 @@ export function Checkout() {
   //   navigate('/success')
   // }
 
+  // calcule of total value to pay
+
+  const totalToPayItems =
+    coffeesSelected.length > 0
+      ? coffeesSelected
+          .map((coffee) => {
+            return coffee.price * coffee.amountSelected
+          })
+          .reduce((acc, currentValue) => {
+            return acc + currentValue
+          })
+      : 0
+
+  const priceTotalItems = totalToPayItems.toFixed(2)
+
   function selectFormPayment(formPayment: string) {
     setFormPaymentSelected(formPayment)
     setValue('formPayment', formPayment)
@@ -197,7 +212,7 @@ export function Checkout() {
               })}
             </ListCoffees>
             <ContainerMainInfo>
-              <ContainerInfosPrice />
+              <ContainerInfosPrice priceTotalItems={priceTotalItems} />
               <Button type="submit" text="CONFIRMAR PEDIDO" />
             </ContainerMainInfo>
           </ContainerSelectedCoffees>

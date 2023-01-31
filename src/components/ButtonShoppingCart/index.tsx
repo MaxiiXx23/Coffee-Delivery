@@ -4,7 +4,11 @@ import { ShoppingCart } from 'phosphor-react'
 
 import { ContainerButton, BtnContainer, CountNumber } from './styles'
 
-export function ButtonShoppingCart() {
+interface IButtonShoppingCartProps {
+  countCart: number
+}
+
+export function ButtonShoppingCart({ countCart }: IButtonShoppingCartProps) {
   const theme = useTheme()
 
   return (
@@ -17,7 +21,7 @@ export function ButtonShoppingCart() {
         />
       </BtnContainer>
       <CountNumber>
-        <span>3</span>
+        <span>{countCart}</span>
       </CountNumber>
     </ContainerButton>
   )

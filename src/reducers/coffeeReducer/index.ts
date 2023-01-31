@@ -15,8 +15,8 @@ interface ICoffeeStateReducer {
 export enum ActionTypes {
     'ADD_NEW_COFFEE' = 'ADD_NEW_COFFE',
     'REMOVE_COFFEE_SELECTED' = 'REMOVE_COFFEE_SELECTED',
-    'ADD_AT_COUNT' = 'ADD_AT_COUNT',
-    'REMOVE_AT_COUNT' = 'REMOVE_AT_COUNT'
+    'CHANGE_AMOUNT_SELECTED' = 'CHANGE_AMOUNT_SELECTED',
+    'CHANGE_SCORE_CART_SELECTED' = 'CHANGE_SCORE_CART_SELECTED',
 }
 
 export interface IActions {
@@ -40,9 +40,10 @@ export function coffeeReducer(state: ICoffeeStateReducer, action: IActions) {
                     ...state,
                 }
             }else {
+ 
                 return {
                     ...state,
-                    coffeesSelected: [...state.coffeesSelected, action.payload.newCoffee]
+                    coffeesSelected: [...state.coffeesSelected, action.payload.newCoffee],
                 }
             }
         }
@@ -63,6 +64,48 @@ export function coffeeReducer(state: ICoffeeStateReducer, action: IActions) {
                 }
             }
             return state
+        }
+
+        case ActionTypes.CHANGE_AMOUNT_SELECTED: {
+
+            
+
+            const coffeeExists = state.coffeesSelected
+                .find((coffee) => coffee.id === action.payload.id)
+
+            if(coffeeExists) {
+                coffeeExists.amountSelected = action.payload.amountSelected
+                return {
+                    ...state,
+                    
+                }
+            }
+
+            return state
+        }
+
+        case ActionTypes.CHANGE_SCORE_CART_SELECTED: {
+            const scoresCoffeesSelected = state.coffeesSelected.map((coffee) => {
+                return coffee.amountSelected
+            })
+            let totalScoreCart = 0;
+
+            if(scoresCoffeesSelected.length > 0){
+               totalScoreCart = scoresCoffeesSelected.reduce((acc, currentValue) => {
+                    return acc + currentValue
+                })
+
+                return {
+                    ...state,
+                    countCart: totalScoreCart
+                }
+            }
+
+            return {
+                ...state,
+                countCart: totalScoreCart
+            }
+
         }
 
         default:

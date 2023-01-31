@@ -4,6 +4,8 @@ import { ICoffee, coffeeReducer } from '../reducers/coffeeReducer'
 import {
   addNewCoffeeAction,
   removeCoffeeAction,
+  changeAmountSelectedAction,
+  changeScoreCartSelectedAction,
 } from '../reducers/coffeeReducer/actions'
 
 interface ICoffeeContext {
@@ -11,6 +13,7 @@ interface ICoffeeContext {
   coffeesSelected: ICoffee[]
   addNewCoffeeOnCart: (newCoffee: ICoffee) => void
   removeCoffeeOnCart: (id: string) => void
+  changeAmountCoffeeSelected: (id: string, amountSelected: number) => void
 }
 
 interface ICoffeeContextProvider {
@@ -27,10 +30,16 @@ export function CoffeeContextProvider({ children }: ICoffeeContextProvider) {
 
   function addNewCoffeeOnCart(newCoffee: ICoffee) {
     dispatch(addNewCoffeeAction(newCoffee))
+    dispatch(changeScoreCartSelectedAction())
   }
 
   function removeCoffeeOnCart(id: string) {
     dispatch(removeCoffeeAction(id))
+    dispatch(changeScoreCartSelectedAction())
+  }
+
+  function changeAmountCoffeeSelected(id: string, amountSelected: number) {
+    dispatch(changeAmountSelectedAction(id, amountSelected))
   }
 
   const { coffeesSelected, countCart } = coffeeState
@@ -42,6 +51,7 @@ export function CoffeeContextProvider({ children }: ICoffeeContextProvider) {
         countCart,
         addNewCoffeeOnCart,
         removeCoffeeOnCart,
+        changeAmountCoffeeSelected,
       }}
     >
       {children}

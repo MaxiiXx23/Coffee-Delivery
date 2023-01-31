@@ -1,7 +1,11 @@
+import { useContext } from 'react'
+
 import { MapPin } from 'phosphor-react'
 import { useTheme } from 'styled-components'
 
 import LogoCoffeeDelivery from '../../assets/images/LogoCoffeeDelivery.svg'
+
+import { CoffeeContext } from '../../contexts/CoffeeContextProvider'
 
 import {
   Navbar,
@@ -10,10 +14,12 @@ import {
   Location,
   ContainerLocation,
 } from './styles'
+
 import { ButtonShoppingCart } from '../ButtonShoppingCart'
 
 export function Header() {
   const theme = useTheme()
+  const { countCart } = useContext(CoffeeContext)
 
   return (
     <Navbar>
@@ -25,7 +31,7 @@ export function Header() {
           <MapPin size={22} color={theme.colors['purple-500']} weight="fill" />
           <Location>São Paulo, SP</Location>
         </WrapperLocation>
-        <ButtonShoppingCart />
+        <ButtonShoppingCart countCart={countCart} />
       </ContainerLocation>
     </Navbar>
   )

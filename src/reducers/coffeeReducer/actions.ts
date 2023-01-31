@@ -17,3 +17,22 @@ export function removeCoffeeAction(id: string): IActions {
     },
   }
 }
+
+export function changeAmountSelectedAction(
+  id: string,
+  amountSelected: number,
+): IActions {
+  return {
+    type: ActionTypes.CHANGE_AMOUNT_SELECTED,
+    payload: {
+      id,
+      amountSelected,
+    },
+  }
+}
+
+export function changeScoreCartSelectedAction(): IActions {
+  return {
+    type: ActionTypes.CHANGE_SCORE_CART_SELECTED,
+  }
+}

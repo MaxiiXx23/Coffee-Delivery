@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 import {
   ContainerInfos,
   WrapperTotalItems,
@@ -9,22 +11,33 @@ import {
   PriceTotal,
 } from './styles'
 
-/* 
-
-interface IContainerInfosPrice {
-  PriceTotalItems: number
-  PriceDelivery: number
-  PriceTotal: number
+interface IContainerInfosPriceProps {
+  priceTotalItems: string
 }
 
-*/
+export function ContainerInfosPrice({
+  priceTotalItems,
+}: IContainerInfosPriceProps) {
+  const [priceCurrentTotalItems, setPriceCurrentTotalItems] = useState('0')
 
-export function ContainerInfosPrice() {
+  const priceTotalItemsFormatted = priceTotalItems.replace('.', ',')
+  const priceDelivery = 3.5
+
+  const priceTotal = (Number(priceCurrentTotalItems) + priceDelivery)
+    .toFixed(2)
+    .replace('.', ',')
+
+  const priceTotalToPay = priceCurrentTotalItems === '0.00' ? '0' : priceTotal
+
+  useEffect(() => {
+    setPriceCurrentTotalItems(priceTotalItems)
+  }, [priceTotalItems])
+
   return (
     <ContainerInfos>
       <WrapperTotalItems>
         <TitleInfo>Total de itens</TitleInfo>
-        <PriceInfo>R$ 29,70</PriceInfo>
+        <PriceInfo>R$ {priceTotalItemsFormatted}</PriceInfo>
       </WrapperTotalItems>
       <WrapperDelivery>
         <TitleInfo>Entrega</TitleInfo>
@@ -32,7 +45,7 @@ export function ContainerInfosPrice() {
       </WrapperDelivery>
       <WrapperTotal>
         <TitleTotal>Total</TitleTotal>
-        <PriceTotal>R$ 33,20</PriceTotal>
+        <PriceTotal>R$ {priceTotalToPay}</PriceTotal>
       </WrapperTotal>
     </ContainerInfos>
   )

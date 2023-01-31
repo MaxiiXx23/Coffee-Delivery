@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useTheme } from 'styled-components'
 
 import { ShoppingCartSimple } from 'phosphor-react'
@@ -40,9 +40,33 @@ export function CardCoffee({
   price,
 }: ICardCoffeeProps) {
   const theme = useTheme()
-  const { addNewCoffeeOnCart } = useContext(CoffeeContext)
+
+  const { addNewCoffeeOnCart, coffeesSelected } = useContext(CoffeeContext)
+
+  const matchCoffee = coffeesSelected.find((coffee) => coffee.id === id)
+
+  const [countItems, setCountItems] = useState(() => {
+    if (matchCoffee) {
+      return matchCoffee.amountSelected
+    }
+    return 1
+  })
 
   const priceFormatted = convertPriceToString(price)
+
+  function handleAddItem() {
+    setCountItems((state) => {
+      return state + 1
+    })
+  }
+  function handleRemoveItem() {
+    setCountItems((state) => {
+      if (state > 1) {
+        return state - 1
+      }
+      return state
+    })
+  }
 
   function handleAddNewCoffeeOnCart() {
     const newCoffe = {
@@ -50,7 +74,7 @@ export function CardCoffee({
       imgUrl,
       name,
       price,
-      amountSelected: 2,
+      amountSelected: countItems,
     }
     addNewCoffeeOnCart(newCoffe)
   }
@@ -81,7 +105,11 @@ export function CardCoffee({
         </Price>
         <WrapperAdderAndNav>
           {/* Container Adder */}
-          <AdderCoffee idCoffee="" />
+          <AdderCoffee
+            countItems={countItems}
+            handleAddItem={handleAddItem}
+            handleRemoveItem={handleRemoveItem}
+          />
           {/* ButtonCartSimple */}
           <BtnCartSimple onClick={handleAddNewCoffeeOnCart}>
             <ShoppingCartSimple

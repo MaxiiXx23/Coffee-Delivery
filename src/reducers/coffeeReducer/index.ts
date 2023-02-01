@@ -6,7 +6,6 @@ export interface ICoffee {
     amountSelected: number
 }
 
-// Reducer and after refectoring this "method" pass to a separate dir
 interface ICoffeeStateReducer {
     coffeesSelected: ICoffee[],
     countCart: number
@@ -26,7 +25,6 @@ export interface IActions {
 }
 
 export function coffeeReducer(state: ICoffeeStateReducer, action: IActions) {
-    // to make switch with the options of actions
 
     switch (action.type) {
         case ActionTypes.ADD_NEW_COFFEE: {

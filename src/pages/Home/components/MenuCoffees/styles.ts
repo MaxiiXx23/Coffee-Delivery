@@ -11,7 +11,6 @@ export const Title = styled.span`
   color: ${({ theme }) => theme.colors['gray-700']};
 `
 
-// to use grip on the list coffee
 export const MenuList = styled.div`
   margin-top: 3.375rem;
   display: grid;

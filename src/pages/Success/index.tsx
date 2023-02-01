@@ -67,7 +67,6 @@ export function Success() {
               </WrapperInfos>
             </ItemInfo>
             <ItemInfo>
-              {/* Colocar o CircleIcon */}
               <CircleIcon IconName="CurrencyDollar" variantColor="yellowDark" />
               <WrapperInfos>
                 <Text>Pagamento na entrega</Text>

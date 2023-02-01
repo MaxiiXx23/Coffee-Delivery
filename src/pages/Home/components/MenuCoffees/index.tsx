@@ -6,9 +6,7 @@ import { CardCoffee } from '../../../../components/CardCoffee'
 export function MenuCoffees() {
   return (
     <ContainerSection>
-      {/* title */}
       <Title>Nossos cafés</Title>
-      {/* Card */}
       <MenuList>
         {coffees.map((coffee) => {
           return (

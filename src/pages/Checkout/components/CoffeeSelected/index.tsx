@@ -88,7 +88,6 @@ export function CoffeeSelected({
       </ContainerInfo>
       <WrapperPrice>
         <Price>
-          {/* criar util para converter o price para string */}
           <span>R$</span> {priceFormatted}
         </Price>
       </WrapperPrice>

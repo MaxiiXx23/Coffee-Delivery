@@ -43,11 +43,11 @@ export function CardCoffee({
 
   const { addNewCoffeeOnCart, coffeesSelected } = useContext(CoffeeContext)
 
-  const matchCoffee = coffeesSelected.find((coffee) => coffee.id === id)
+  const coffeeFound = coffeesSelected.find((coffee) => coffee.id === id)
 
   const [countItems, setCountItems] = useState(() => {
-    if (matchCoffee) {
-      return matchCoffee.amountSelected
+    if (coffeeFound) {
+      return coffeeFound.amountSelected
     }
     return 1
   })
@@ -81,11 +81,9 @@ export function CardCoffee({
 
   return (
     <ContainerCardCoffee>
-      {/* wrapper ImgCoffee */}
       <WrapperImgCoffee>
         <img src={imgUrl} alt="" title="Coffee" loading="lazy" />
       </WrapperImgCoffee>
-      {/* Container List expecifications coffee */}
       <ContainerExpecifications>
         <ListExpecification>
           {expecifications.map((expecification, index) => {
@@ -93,24 +91,18 @@ export function CardCoffee({
           })}
         </ListExpecification>
       </ContainerExpecifications>
-      {/* Name coffee */}
       <Name>{name}</Name>
-      {/* details coffee */}
       <Details>{details}</Details>
-      {/* Container add coffee */}
       <ContainerAddCoffe>
-        {/* Price */}
         <Price>
           <span>R$</span> {priceFormatted}
         </Price>
         <WrapperAdderAndNav>
-          {/* Container Adder */}
           <AdderCoffee
             countItems={countItems}
             handleAddItem={handleAddItem}
             handleRemoveItem={handleRemoveItem}
           />
-          {/* ButtonCartSimple */}
           <BtnCartSimple onClick={handleAddNewCoffeeOnCart}>
             <ShoppingCartSimple
               size={22}

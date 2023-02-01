@@ -34,24 +34,6 @@ import { CoffeeSelected } from './components/CoffeeSelected'
 import { BtnFormPayment } from './components/BtnFormPayment'
 import { Button } from '../../components/Button'
 
-/*
-interface NavigateFunction {
-  (
-    to: '/success',
-    options?: {
-      replace?: boolean
-      state?: any
-      relative?: RelativeRoutingType
-    },
-  ): void
-  (delta: number): void
-}
-
-// eslint-disable-next-line no-redeclare
-declare function useNavigate(): NavigateFunction
-
-*/
-
 const schema = yup.object({
   state: yup.string().max(2, 'Estado não pode conter mais de 2 caracteres.'),
   city: yup.string().max(50, 'Cidade não pode conter mais de 50 caracteres.'),
@@ -68,9 +50,6 @@ const schema = yup.object({
     .required('Rua inválida.'),
   cep: yup.string().length(8, 'CEP inválido.').required(),
 })
-
-// type FormData = yup.InferType<typeof schema>
-
 interface IFormData {
   state: string
   city: string
@@ -213,7 +192,6 @@ export function Checkout() {
             </ContainerPayment>
           </ContainerPaymentMain>
         </ContainerMainAddress>
-        {/* Container Main Selecteds Coffees */}
         <ContainerMainSelectedCoffees>
           <Title>Cafés selecionados</Title>
           <ContainerSelectedCoffees>

@@ -6,8 +6,8 @@ import { ContainerMainInput, Input, WrapperInputs } from './styles'
 
 interface IResponseFetchCEP {
   bairro: string
-  localidade: string // city
-  logradouro: string // street
+  localidade: string
+  logradouro: string
   uf: string
 }
 

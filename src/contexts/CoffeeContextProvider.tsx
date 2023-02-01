@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useReducer, useState } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 
 import { ICoffee, coffeeReducer } from '../reducers/coffeeReducer'
 import {
@@ -33,13 +39,32 @@ interface ICoffeeContextProvider {
   children: ReactNode
 }
 
+const keyCoffeesSelectedLocalStorage = '@CoffeesDelivery:CoffeesSelected-1.0.0'
+
 export const CoffeeContext = createContext<ICoffeeContext>({} as ICoffeeContext)
 
 export function CoffeeContextProvider({ children }: ICoffeeContextProvider) {
-  const [coffeeState, dispatch] = useReducer(coffeeReducer, {
-    coffeesSelected: [],
-    countCart: 0,
-  })
+  const [coffeeState, dispatch] = useReducer(
+    coffeeReducer,
+    {
+      coffeesSelected: [],
+      countCart: 0,
+    },
+    () => {
+      const dataLocalStorage = localStorage.getItem(
+        keyCoffeesSelectedLocalStorage,
+      )
+
+      if (dataLocalStorage) {
+        return JSON.parse(dataLocalStorage)
+      }
+
+      return {
+        coffeesSelected: [],
+        countCart: 0,
+      }
+    },
+  )
 
   const [dataForm, setDataForm] = useState<IDataForm>({} as IDataForm)
 
@@ -67,6 +92,12 @@ export function CoffeeContextProvider({ children }: ICoffeeContextProvider) {
   }
 
   const { coffeesSelected, countCart } = coffeeState
+
+  useEffect(() => {
+    const coffeesSelectedJSON = JSON.stringify(coffeeState)
+
+    localStorage.setItem(keyCoffeesSelectedLocalStorage, coffeesSelectedJSON)
+  }, [coffeesSelected])
 
   return (
     <CoffeeContext.Provider

@@ -37,10 +37,6 @@ export const ListExpecification = styled.ul`
   align: center;
   justify: center;
   gap: 0.25rem;
-
-  /* &:first-child {
-    padding: 0 2rem;
-  } */
 `
 
 export const Expecification = styled.li`

@@ -1,5 +1,3 @@
-import { v4 as UuidV4 } from 'uuid'
-
 import ImgTypeExpresso from '../assets/coffees/TypeExpresso.svg'
 import ImgTypeAmericano from '../assets/coffees/TypeAmericano.svg'
 import ImgTypeExpressoCremoso from '../assets/coffees/TypeExpressoCremoso.svg'
@@ -26,7 +24,7 @@ interface ICoffee {
 
 export const coffees: ICoffee[] = [
   {
-    id: UuidV4(),
+    id: '56a98b43-7ac3-45d9-bddb-b9b06a46d0aa',
     imgUrl: ImgTypeExpresso,
     expecification: ['Tradicional'],
     name: 'Expresso Americano',
@@ -34,7 +32,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: 'a3c7c8e9-6e64-4a87-86f3-6a2c58fd0cae',
     imgUrl: ImgTypeAmericano,
     expecification: ['Tradicional'],
     name: 'Expresso Tradicional',
@@ -42,7 +40,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '34ba3273-9ebe-43c5-8744-e1cfbbc2074b',
     imgUrl: ImgTypeExpressoCremoso,
     expecification: ['Tradicional'],
     name: 'Expresso Cremoso',
@@ -50,7 +48,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '344cbffd-cf19-44e7-ac39-2d8c9a468761',
     imgUrl: ImgTypeExpressoGelado,
     expecification: ['Tradicional', 'Gelado'],
     name: 'Expresso Gelado',
@@ -58,7 +56,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '1382321b-e661-41db-8469-3f85f9a914f2',
     imgUrl: ImgTypeCafeComLeite,
     expecification: ['Tradicional', 'Com leite'],
     name: 'Café com Leite',
@@ -66,7 +64,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '1f131fc3-e25f-443e-94af-537db0ad2229',
     imgUrl: ImgTypeLatte,
     expecification: ['Tradicional', 'Com leite'],
     name: 'Latte',
@@ -74,7 +72,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '9b79d584-16d5-4969-b2a3-1227d3ce6774',
     imgUrl: ImgTypeCapuccino,
     expecification: ['Tradicional', 'Com leite'],
     name: 'Capuccino',
@@ -82,7 +80,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '494704e3-890e-4401-aa7a-34bf6cc145bc',
     imgUrl: ImgTypeMacchiato,
     expecification: ['Tradicional', 'Com leite'],
     name: 'Macchiato',
@@ -90,7 +88,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: 'c32b04e7-4853-4365-a168-2a8df4bfd5a5',
     imgUrl: ImgTypeMochaccino,
     expecification: ['Tradicional', 'Com leite'],
     name: 'Mocaccino',
@@ -98,7 +96,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '26a2dd7e-0c06-4d5a-8b7a-a93932a2e52f',
     imgUrl: ImgTypeChocolateQuente,
     expecification: ['Especial', 'Com leite'],
     name: 'Chocolate Quente',
@@ -106,7 +104,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '0a786379-031a-4892-89b7-d5b6698c016b',
     imgUrl: ImgTypeCubano,
     expecification: ['Especial', 'Alcoólico', 'Gelado'],
     name: 'Cubano',
@@ -114,7 +112,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '6439eb0d-6bc5-47df-ae00-b971fe488886',
     imgUrl: ImgTypeHavaiano,
     expecification: ['Especial'],
     name: 'Havaiano',
@@ -122,7 +120,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: '70790292-1fe1-4718-a53f-d2d291e4c8ad',
     imgUrl: ImgTypeArabe,
     expecification: ['Especial'],
     name: 'Árabe',
@@ -130,7 +128,7 @@ export const coffees: ICoffee[] = [
     price: 9.9,
   },
   {
-    id: UuidV4(),
+    id: 'b9467df1-173e-4218-9b11-006e42d06ab5',
     imgUrl: ImgTypeIrlandes,
     expecification: ['Especial', 'Alcoólico'],
     name: 'Irlandês',

@@ -1,9 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
-// Layout
 import { DefaultLayout } from '../layouts/DefaultLayout'
 
-// Pages
 import { Home } from '../pages/Home'
 import { Checkout } from '../pages/Checkout'
 import { Success } from '../pages/Success'

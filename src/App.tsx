@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import { AppRoutes } from './routes/AppRoutes.routes'
 
@@ -16,6 +17,18 @@ export function App() {
         </CoffeeContextProvider>
       </BrowserRouter>
       <GlobalCss />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </ThemeProvider>
   )
 }

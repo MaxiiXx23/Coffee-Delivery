@@ -25,7 +25,7 @@ export function ContainerInputsForm() {
           const resultJson = response
           return resultJson.json()
         })
-        .catch(() => console.log('Error fecth'))
+        .catch(() => console.log('Error fecth CEP'))
 
       const { logradouro, bairro, localidade, uf } = result
 

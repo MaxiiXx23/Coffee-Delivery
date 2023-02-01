@@ -1,3 +1,7 @@
+import { useContext } from 'react'
+
+import { CoffeeContext } from '../../contexts/CoffeeContextProvider'
+
 import IllustrationImg from '../../assets/images/Illustration.svg'
 import { CircleIcon } from '../../components/CircleIcon'
 
@@ -17,6 +21,19 @@ import {
 } from './styles'
 
 export function Success() {
+  const { dataForm } = useContext(CoffeeContext)
+
+  const formPaymentPtBR: { [key: string]: any } = {
+    CreditCard: 'Cartão de Crédito',
+    Debit: 'Cartão de Débito',
+    Money: 'Dinheiro',
+  }
+
+  const { street, number, district, city, state, formPaymentSelected } =
+    dataForm
+
+  const formPayment = formPaymentPtBR[formPaymentSelected]
+
   return (
     <ContainerMain>
       <ContainerInfoSuccess>
@@ -33,9 +50,13 @@ export function Success() {
               <WrapperInfos>
                 <Text>
                   Entrega em{' '}
-                  <TextBold>Rua João Daniel Martinelli, 102</TextBold>
+                  <TextBold>
+                    {street}, {number}
+                  </TextBold>
                 </Text>
-                <Text>Farrapos - Porto Alegre, RS</Text>
+                <Text>
+                  {district} - {city}, {state}
+                </Text>
               </WrapperInfos>
             </ItemInfo>
             <ItemInfo>
@@ -50,7 +71,7 @@ export function Success() {
               <CircleIcon IconName="CurrencyDollar" variantColor="yellowDark" />
               <WrapperInfos>
                 <Text>Pagamento na entrega</Text>
-                <TextBold>Cartão de Crédito</TextBold>
+                <TextBold>{formPayment}</TextBold>
               </WrapperInfos>
             </ItemInfo>
           </List>

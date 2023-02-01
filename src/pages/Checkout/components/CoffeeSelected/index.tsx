@@ -62,9 +62,8 @@ export function CoffeeSelected({
   }
 
   useEffect(() => {
-    // changeAmountCoffeeSelected(id, countItems)
-    console.log('Chance value')
-  }, [countItems, changeAmountCoffeeSelected, id])
+    changeAmountCoffeeSelected(id, countItems)
+  }, [countItems])
 
   return (
     <ContainerMain>
@@ -76,7 +75,7 @@ export function CoffeeSelected({
           <Name>{name}</Name>
           <WrapperOptions>
             <AdderCoffee
-              countItems={countItems}
+              countItems={amountSelected}
               handleAddItem={handleAddItem}
               handleRemoveItem={handleRemoveItem}
             />

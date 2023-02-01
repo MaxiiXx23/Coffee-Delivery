@@ -17,6 +17,7 @@ export enum ActionTypes {
     'REMOVE_COFFEE_SELECTED' = 'REMOVE_COFFEE_SELECTED',
     'CHANGE_AMOUNT_SELECTED' = 'CHANGE_AMOUNT_SELECTED',
     'CHANGE_SCORE_CART_SELECTED' = 'CHANGE_SCORE_CART_SELECTED',
+    'DELETE_ALL_STATE' = 'DELETE_ALL_STATE'
 }
 
 export interface IActions {
@@ -52,8 +53,6 @@ export function coffeeReducer(state: ICoffeeStateReducer, action: IActions) {
             const coffeeExists = state.coffeesSelected
                 .find((coffee) => coffee.id === action.payload.id)
 
-            console.log(coffeeExists)
-
             if(coffeeExists){
                 const newArrayWithoutCoffeeSelected = state.coffeesSelected
                     .filter((coffee) => coffee.id !== coffeeExists.id)
@@ -68,8 +67,6 @@ export function coffeeReducer(state: ICoffeeStateReducer, action: IActions) {
 
         case ActionTypes.CHANGE_AMOUNT_SELECTED: {
 
-            
-
             const coffeeExists = state.coffeesSelected
                 .find((coffee) => coffee.id === action.payload.id)
 
@@ -77,7 +74,7 @@ export function coffeeReducer(state: ICoffeeStateReducer, action: IActions) {
                 coffeeExists.amountSelected = action.payload.amountSelected
                 return {
                     ...state,
-                    
+                    coffeesSelected: [...state.coffeesSelected]          
                 }
             }
 
@@ -106,6 +103,14 @@ export function coffeeReducer(state: ICoffeeStateReducer, action: IActions) {
                 countCart: totalScoreCart
             }
 
+        }
+
+        case ActionTypes.DELETE_ALL_STATE: {
+            return {
+                ...state,
+                coffeesSelected: [],
+                countCart: 0
+            }
         }
 
         default:

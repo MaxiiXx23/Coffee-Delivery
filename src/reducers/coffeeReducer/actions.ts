@@ -36,3 +36,8 @@ export function changeScoreCartSelectedAction(): IActions {
     type: ActionTypes.CHANGE_SCORE_CART_SELECTED,
   }
 }
+export function deleteAllStateAction(): IActions {
+  return {
+    type: ActionTypes.DELETE_ALL_STATE,
+  }
+}

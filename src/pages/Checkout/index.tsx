@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react'
-
+import { useContext, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import { useTheme } from 'styled-components'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { FormProvider, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -26,7 +26,7 @@ import {
   ContainerMainInfo,
 } from './styles'
 
-import { CoffeeContext } from '../../contexts/CoffeeContextProvider'
+import { CoffeeContext, IDataForm } from '../../contexts/CoffeeContextProvider'
 import { ContainerInfosPrice } from './components/ContainerInfosPrice'
 import { ContainerInputsForm } from './components/ContainerInputsForm'
 import { CoffeeSelected } from './components/CoffeeSelected'
@@ -84,11 +84,12 @@ interface IFormData {
 
 export function Checkout() {
   const theme = useTheme()
-  const { coffeesSelected } = useContext(CoffeeContext)
+  const { coffeesSelected, countCart, addDataForm, deleteAllStateReducer } =
+    useContext(CoffeeContext)
 
   const [formPaymentSelected, setFormPaymentSelected] = useState('')
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const formCheckout = useForm<IFormData>({
     resolver: yupResolver(schema),
@@ -104,12 +105,6 @@ export function Checkout() {
   })
 
   const { handleSubmit, setValue } = formCheckout
-
-  // function handleNavigateToSuccess() {
-  //   navigate('/success')
-  // }
-
-  // calcule of total value to pay
 
   const totalToPayItems =
     coffeesSelected.length > 0
@@ -130,8 +125,33 @@ export function Checkout() {
   }
 
   function handleFormCheckout(data: IFormData) {
-    console.log(data)
+    if (!formPaymentSelected) {
+      return toast.warning('Selecione uma forma de pagamento.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      })
+    }
+
+    const newDataFom: IDataForm = {
+      street: data.street,
+      number: data.number,
+      district: data.district,
+      city: data.city,
+      state: data.state,
+      formPaymentSelected,
+    }
+    addDataForm(newDataFom)
+    deleteAllStateReducer()
+    navigate('/success')
   }
+
+  useEffect(() => {}, [countCart])
 
   return (
     <ContainerMain>

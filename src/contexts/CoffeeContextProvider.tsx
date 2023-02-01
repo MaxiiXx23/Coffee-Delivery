@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useReducer } from 'react'
+import { ReactNode, createContext, useReducer, useState } from 'react'
 
 import { ICoffee, coffeeReducer } from '../reducers/coffeeReducer'
 import {
@@ -6,14 +6,27 @@ import {
   removeCoffeeAction,
   changeAmountSelectedAction,
   changeScoreCartSelectedAction,
+  deleteAllStateAction,
 } from '../reducers/coffeeReducer/actions'
+
+export interface IDataForm {
+  street: string
+  number: string
+  district: string
+  city: string
+  state: string
+  formPaymentSelected: string
+}
 
 interface ICoffeeContext {
   countCart: number
   coffeesSelected: ICoffee[]
+  dataForm: IDataForm
+  addDataForm: (dataForm: IDataForm) => void
   addNewCoffeeOnCart: (newCoffee: ICoffee) => void
   removeCoffeeOnCart: (id: string) => void
   changeAmountCoffeeSelected: (id: string, amountSelected: number) => void
+  deleteAllStateReducer: () => void
 }
 
 interface ICoffeeContextProvider {
@@ -28,6 +41,8 @@ export function CoffeeContextProvider({ children }: ICoffeeContextProvider) {
     countCart: 0,
   })
 
+  const [dataForm, setDataForm] = useState<IDataForm>({} as IDataForm)
+
   function addNewCoffeeOnCart(newCoffee: ICoffee) {
     dispatch(addNewCoffeeAction(newCoffee))
     dispatch(changeScoreCartSelectedAction())
@@ -40,6 +55,15 @@ export function CoffeeContextProvider({ children }: ICoffeeContextProvider) {
 
   function changeAmountCoffeeSelected(id: string, amountSelected: number) {
     dispatch(changeAmountSelectedAction(id, amountSelected))
+    dispatch(changeScoreCartSelectedAction())
+  }
+
+  function deleteAllStateReducer() {
+    dispatch(deleteAllStateAction())
+  }
+
+  function addDataForm(dataForm: IDataForm) {
+    setDataForm(dataForm)
   }
 
   const { coffeesSelected, countCart } = coffeeState
@@ -49,9 +73,12 @@ export function CoffeeContextProvider({ children }: ICoffeeContextProvider) {
       value={{
         coffeesSelected,
         countCart,
+        dataForm,
+        addDataForm,
         addNewCoffeeOnCart,
         removeCoffeeOnCart,
         changeAmountCoffeeSelected,
+        deleteAllStateReducer,
       }}
     >
       {children}

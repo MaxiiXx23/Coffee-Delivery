@@ -32,7 +32,6 @@ export const BtnContainer = styled.button<IBtnFormPaymentProps>`
   }
 
   span {
-    line-height: 1.6;
     font-size: 0.625rem;
   }
 

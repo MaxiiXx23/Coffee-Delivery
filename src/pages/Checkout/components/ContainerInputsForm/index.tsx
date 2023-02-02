@@ -24,6 +24,11 @@ export function ContainerInputsForm() {
 
   const cep: string = watch('cep')
 
+  function handleFormattedCEP(cep: string) {
+    const cepFormatted = cep.replace(/[^0-9]/g, '')
+    return cepFormatted
+  }
+
   useEffect(() => {
     async function FecthCEP(cep: string) {
       const result: IResponseFetchCEP = await fetch(
@@ -42,6 +47,9 @@ export function ContainerInputsForm() {
       setValue('city', localidade)
       setValue('state', uf)
     }
+
+    const cepFormatted = handleFormattedCEP(cep)
+    setValue('cep', cepFormatted)
     if (cep && cep.length === 8) {
       FecthCEP(cep)
     }
@@ -54,6 +62,7 @@ export function ContainerInputsForm() {
         {...register('cep')}
         min={8}
         max={8}
+        maxLength={8}
         placeholder="CEP"
         autoComplete="none"
       />

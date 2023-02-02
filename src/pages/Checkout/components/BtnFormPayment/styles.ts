@@ -32,6 +32,15 @@ export const BtnContainer = styled.button<IBtnFormPaymentProps>`
   }
 
   span {
-    font-size: 0.75rem;
+    line-height: 1.6;
+    font-size: 0.625rem;
+  }
+
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 100%;
+    span {
+      gap: 0.5rem;
+      font-size: 0.5rem;
+    }
   }
 `

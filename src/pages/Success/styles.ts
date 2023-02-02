@@ -8,6 +8,10 @@ export const ContainerMain = styled.main`
   align-items: flex-end;
   justify-content: space-between;
   flex-direction: row;
+
+  @media ${({ theme }) => theme.device.tabletM} {
+    flex-direction: column;
+  }
 `
 
 export const ContainerInfoSuccess = styled.div`
@@ -60,6 +64,10 @@ export const ContainerInfosFinal = styled.div`
         ${({ theme }) => theme.colors['purple-500']}
       )
       border-box;
+
+  @media ${({ theme }) => theme.device.mobileM} {
+    padding: 2.5rem 1rem;
+  }
 `
 
 export const List = styled.ul`
@@ -78,6 +86,10 @@ export const ItemInfo = styled.li`
   justify-content: flex-start;
   flex-direction: row;
   gap: 0.75rem;
+
+  @media ${({ theme }) => theme.device.mobileM} {
+    flex-direction: column;
+  }
 `
 
 export const WrapperInfos = styled.div`
@@ -106,6 +118,18 @@ export const ContainerIllustration = styled.div`
   justify-content: center;
   flex-direction: column;
   img {
+    width: 100%;
+    height: 100%;
     margin-bottom: -0.75rem;
+  }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    img {
+      margin-bottom: -0.625rem;
+    }
+  }
+
+  @media ${({ theme }) => theme.device.tabletM} {
+    margin-top: 1rem;
   }
 `

@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 
 import { useFormContext } from 'react-hook-form'
+import { useTheme } from 'styled-components'
+
+import { useMediaQuery } from '../../../../hooks/useMediaQueries'
 
 import { ContainerMainInput, Input, WrapperInputs } from './styles'
 
@@ -13,6 +16,11 @@ interface IResponseFetchCEP {
 
 export function ContainerInputsForm() {
   const { register, watch, setValue } = useFormContext()
+  const theme = useTheme()
+
+  const isAboveMediumScreen = useMediaQuery(theme.device.tabletS)
+
+  const varifyGridInput = isAboveMediumScreen ? 'gridColumn1Slash4' : 'gridAuto'
 
   const cep: string = watch('cep')
 
@@ -54,7 +62,7 @@ export function ContainerInputsForm() {
         {...register('street')}
         placeholder="RUA"
         disabled
-        gridColumn="1 / 4"
+        gridColumn="gridColumn1Slash4"
       />
       <WrapperInputs>
         <Input
@@ -69,6 +77,7 @@ export function ContainerInputsForm() {
           max={50}
           placeholder="COMPLEMENTO"
           autoComplete="none"
+          gridColumn={varifyGridInput}
         />
       </WrapperInputs>
       <Input
@@ -76,8 +85,15 @@ export function ContainerInputsForm() {
         {...register('district')}
         placeholder="BAIRRO"
         disabled
+        gridColumn={varifyGridInput}
       />
-      <Input type="text" {...register('city')} placeholder="CIDADE" disabled />
+      <Input
+        type="text"
+        {...register('city')}
+        placeholder="CIDADE"
+        disabled
+        gridColumn={varifyGridInput}
+      />
       <Input type="text" {...register('state')} placeholder="UF" disabled />
     </ContainerMainInput>
   )

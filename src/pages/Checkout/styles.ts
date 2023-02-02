@@ -2,18 +2,28 @@ import styled from 'styled-components'
 
 export const ContainerMain = styled.main`
   width: 100%;
+  padding: 2.5rem 5rem;
   form {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
-    padding: 2.5rem 5rem;
     gap: 2rem;
+  }
+
+  @media ${({ theme }) => theme.device.laptop} {
+    padding: 2.5rem 2.5rem;
+  }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    form {
+      flex-direction: column;
+    }
   }
 `
 
 export const ContainerMainAddress = styled.div`
-  width: 40rem;
+  width: 100%;
 
   display: flex;
   align-items: flex-start;
@@ -93,18 +103,29 @@ export const ContainerPayment = styled.div`
 `
 
 export const ContainerFormPayment = styled.div`
-  width: 100%;
+  width: 28rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   gap: 0.75rem;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 24rem;
+  }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 100%;
+  }
+  @media ${({ theme }) => theme.device.mobileL} {
+    width: 100%;
+    flex-direction: column;
+  }
 `
 
 export const ContainerMainSelectedCoffees = styled.div`
-  width: 28rem;
-  max-height: 31.125rem;
-  margin-top: 1.25rem;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -114,11 +135,15 @@ export const ContainerMainSelectedCoffees = styled.div`
 
 export const ContainerSelectedCoffees = styled.div`
   width: 100%;
-  height: 100%;
+  max-height: 31.125rem;
   padding: 2.5rem;
   background-color: ${({ theme }) => theme.colors['gray-100']};
   border: 0;
   border-radius: 4px 44px 4px 44px;
+
+  @media ${({ theme }) => theme.device.mobileL} {
+    padding: 0.5rem;
+  }
 `
 
 export const ListCoffees = styled.ul`

@@ -13,9 +13,37 @@ export const ContainerHeader = styled.header`
   height: 34rem;
   display: flex;
   flex-direction: row;
-  align: center;
+  align-items: center;
   justify-content: space-between;
   padding: 5.875rem 5rem;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    padding: 5.875rem 3rem;
+  }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    padding: 5.875rem 3rem;
+  }
+
+  @media ${({ theme }) => theme.device.tabletM} {
+    padding: 5.875rem 2rem;
+  }
+
+  @media ${({ theme }) => theme.device.tabletS} {
+    padding: 5.875rem 1rem;
+  }
+
+  @media ${({ theme }) => theme.device.mobileL} {
+    flex-direction: column-reverse;
+    margin-top: 5rem;
+    padding: 2.5rem 1rem;
+  }
+
+  @media ${({ theme }) => theme.device.mobileS} {
+    flex-direction: column-reverse;
+    margin-top: 6rem;
+    padding: 2.5rem 1rem;
+  }
 `
 export const ContainerInfo = styled.div`
   width: 100%;
@@ -40,6 +68,14 @@ export const Title = styled.span`
   line-height: 1.3;
   text-align: inline;
   color: ${({ theme }) => theme.colors['gray-800']};
+
+  @media ${({ theme }) => theme.device.tabletM} {
+    font-size: 2rem;
+  }
+
+  @media ${({ theme }) => theme.device.mobileL} {
+    font-size: 2rem;
+  }
 `
 
 export const Subtitle = styled.p`
@@ -75,6 +111,18 @@ export const Info = styled.div`
     font-size: 1rem;
     line-height: 1.3;
   }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    span {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media ${({ theme }) => theme.device.mobileL} {
+    span {
+      font-size: 0.75rem;
+    }
+  }
 `
 
 export const ContainerBanner = styled.div`
@@ -87,5 +135,9 @@ export const ContainerBanner = styled.div`
   img {
     width: 100%;
     height: 100%;
+  }
+
+  @media ${({ theme }) => theme.device.mobileL} {
+    margin-top: 4rem;
   }
 `

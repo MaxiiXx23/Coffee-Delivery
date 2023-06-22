@@ -29,7 +29,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Tradicional'],
     name: 'Expresso Americano',
     details: 'Expresso diluído, menos intenso que o tradicional',
-    price: 9.9,
+    price: 9.5,
   },
   {
     id: 'a3c7c8e9-6e64-4a87-86f3-6a2c58fd0cae',
@@ -37,7 +37,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Tradicional'],
     name: 'Expresso Tradicional',
     details: 'O tradicional café feito com água quente e grãos moídos',
-    price: 9.9,
+    price: 9.8,
   },
   {
     id: '34ba3273-9ebe-43c5-8744-e1cfbbc2074b',
@@ -45,7 +45,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Tradicional'],
     name: 'Expresso Cremoso',
     details: 'Café expresso tradicional com espuma cremosa',
-    price: 9.9,
+    price: 7.5,
   },
   {
     id: '344cbffd-cf19-44e7-ac39-2d8c9a468761',
@@ -53,7 +53,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Tradicional', 'Gelado'],
     name: 'Expresso Gelado',
     details: 'Bebida preparada com café expresso e cubos de gelo',
-    price: 9.9,
+    price: 8.5,
   },
   {
     id: '1382321b-e661-41db-8469-3f85f9a914f2',
@@ -61,7 +61,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Tradicional', 'Com leite'],
     name: 'Café com Leite',
     details: 'Meio a meio de expresso tradicional com leite vaporizado',
-    price: 9.9,
+    price: 6.9,
   },
   {
     id: '1f131fc3-e25f-443e-94af-537db0ad2229',
@@ -69,7 +69,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Tradicional', 'Com leite'],
     name: 'Latte',
     details: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
-    price: 9.9,
+    price: 7.5,
   },
   {
     id: '9b79d584-16d5-4969-b2a3-1227d3ce6774',
@@ -85,7 +85,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Tradicional', 'Com leite'],
     name: 'Macchiato',
     details: 'Café expresso misturado com um pouco de leite quente e espuma',
-    price: 9.9,
+    price: 8.8,
   },
   {
     id: 'c32b04e7-4853-4365-a168-2a8df4bfd5a5',
@@ -93,7 +93,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Tradicional', 'Com leite'],
     name: 'Mocaccino',
     details: 'Café expresso com calda de chocolate, pouco leite e espuma',
-    price: 9.9,
+    price: 10.99,
   },
   {
     id: '26a2dd7e-0c06-4d5a-8b7a-a93932a2e52f',
@@ -101,7 +101,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Especial', 'Com leite'],
     name: 'Chocolate Quente',
     details: 'Bebida feita com chocolate dissolvido no leite quente e café',
-    price: 9.9,
+    price: 12.9,
   },
   {
     id: '0a786379-031a-4892-89b7-d5b6698c016b',
@@ -109,7 +109,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Especial', 'Alcoólico', 'Gelado'],
     name: 'Cubano',
     details: 'Drink gelado de café expresso com rum, creme de leite e hortelã',
-    price: 9.9,
+    price: 10.99,
   },
   {
     id: '6439eb0d-6bc5-47df-ae00-b971fe488886',
@@ -117,7 +117,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Especial'],
     name: 'Havaiano',
     details: 'Bebida adocicada preparada com café e leite de coco',
-    price: 9.9,
+    price: 8.99,
   },
   {
     id: '70790292-1fe1-4718-a53f-d2d291e4c8ad',
@@ -125,7 +125,7 @@ export const coffees: ICoffee[] = [
     expecification: ['Especial'],
     name: 'Árabe',
     details: 'Bebida preparada com grãos de café árabe e especiarias',
-    price: 9.9,
+    price: 13.99,
   },
   {
     id: 'b9467df1-173e-4218-9b11-006e42d06ab5',
@@ -133,6 +133,6 @@ export const coffees: ICoffee[] = [
     expecification: ['Especial', 'Alcoólico'],
     name: 'Irlandês',
     details: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
-    price: 9.9,
+    price: 11.99,
   },
 ]

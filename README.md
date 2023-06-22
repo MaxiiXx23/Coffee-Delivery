@@ -4,7 +4,7 @@
  * Coffee Delivery é um site que consiste em desenvolver uma aplicação para gerenciar um carrinho de compras de uma cafeteria fictícia
 
 <img src="./assets/firstPage.png" alt="firstPage-photo-1" width="600px" height="300">
-<img src="./assets/firstPageMenuCoffee.png" alt="firstPageMenuCoffe-photo-2" width="600px" height="300">
+<img src="./assets/menu-coffees.png" alt="firstPageMenuCoffe-photo-2" width="600px" height="300">
 <img src="./assets/checkoutPage.png" alt="checkoutPage-photo-3" width="600px" height="300">
 <img src="./assets/successPage.png" alt="successPage-photo-4" width="600px" height="300">
 
